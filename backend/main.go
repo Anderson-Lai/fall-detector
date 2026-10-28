@@ -5,7 +5,9 @@ import (
 )
 
 const PORT = 8080
+const IS_HTTP = true
 
 func main() {
-	api.InitAPI(true, PORT)
+	api.InitAPI()
+	api.StartServer(IS_HTTP, PORT)
 }

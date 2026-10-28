@@ -6,9 +6,11 @@ import (
 	"net/http"
 )
 
-func InitAPI(isHTTP bool, port int) {
+func InitAPI() {
 	http.HandleFunc("/receive_post", receivePost)
+}
 
+func StartServer(isHTTP bool, port int) {
 	if isHTTP {
 		portStr := fmt.Sprintf(":%d", port)
 		log.Printf("Starting HTTP server at http://localhost%s\n", portStr)
