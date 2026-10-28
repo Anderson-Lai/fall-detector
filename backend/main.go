@@ -4,8 +4,8 @@ import (
 	"medical-device/backend/api"
 )
 
-const PORT = 8080
 const IS_HTTP = true
+const PORT = 8080
 
 func main() {
 	api.InitAPI()
