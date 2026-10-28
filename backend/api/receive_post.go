@@ -7,7 +7,7 @@ import (
 
 type alertStatus string
 const (
-	AlertSOS alertStatus = "SOS"
+	alertSOS alertStatus = "SOS"
 )
 
 type coordinates struct {
@@ -30,7 +30,7 @@ func receivePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	switch alert.AlertType {
-		case AlertSOS:
+		case alertSOS:
 			// TODO: handle SOS alert; email and/or sms
 		default:
 			http.Error(w, "Invalid alert type", http.StatusBadRequest)
