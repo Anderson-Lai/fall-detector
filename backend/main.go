@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"medical-device/backend/api"
+)
+
+const PORT = 8080
 
 func main() {
-	fmt.Println("Hello, World!")
+	api.InitAPI(true, PORT)
 }
