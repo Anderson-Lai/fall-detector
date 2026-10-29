@@ -10,7 +10,7 @@ import (
 
 func TestPostAlert(t *testing.T) {
 	data := types.Alert{
-		DeviceID:  "test-device",
+		DeviceID: "test-device",
 		AlertType: types.AlertSOS,
 		Coordinates: types.Coordinates{
 			Latitude:  37.7749,
