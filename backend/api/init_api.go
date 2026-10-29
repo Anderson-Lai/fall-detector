@@ -4,12 +4,23 @@ import (
 	"fmt"
 	"log"
 	"medical-device/backend/api/endpoints"
+	"medical-device/backend/api/middleware"
 	"net/http"
 )
 
+
+
 func InitAPI(d *endpoints.Database) {
-	http.HandleFunc("/post_alert", d.PostAlert)
-	http.HandleFunc("/provision_device", d.ProvisionDevice)
+	const (
+		postLimit = 1000
+		provisionLimit = 100
+	)
+
+	postRL := middleware.NewRateLimiter(postLimit)
+	provisionRL := middleware.NewRateLimiter(provisionLimit)
+
+	http.Handle("/post_alert", postRL.RateLimit(http.HandlerFunc(d.PostAlert)))
+	http.Handle("/provision_device", provisionRL.RateLimit(http.HandlerFunc(d.ProvisionDevice)))
 }
 
 func StartServer(isHTTP bool, port int) {

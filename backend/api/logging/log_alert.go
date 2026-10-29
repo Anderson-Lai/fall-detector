@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"medical-device/backend/api/timing"
 	"medical-device/backend/api/types"
 	"os"
-	"time"
 )
 
 const logsDir = "logs"
@@ -18,7 +18,7 @@ func InitAlertLogging() {
 }
 
 func LogAlert(alert types.Alert) error {
-	day := getDay()
+	day := timing.GetDay()
 	logName := fmt.Sprintf("%s/%s.log", logsDir, day)
 
 	if err := createLogFile(logName); err != nil {
@@ -30,7 +30,7 @@ func LogAlert(alert types.Alert) error {
 		return err
 	}
 
-	logData[getNow()] = types.Alert{
+	logData[timing.GetNow()] = types.Alert{
 		DeviceID:    alert.DeviceID,
 		AlertType:   alert.AlertType,
 		Coordinates: alert.Coordinates,
@@ -41,14 +41,6 @@ func LogAlert(alert types.Alert) error {
 	}
 
 	return nil
-}
-
-func getDay() string {
-	return time.Now().Format("2006-01-02")
-}
-
-func getNow() string {
-	return time.Now().Format("2006-01-02 15:04:05")
 }
 
 // creates a file only if the file does not exist; otherwise, it does nothing
