@@ -1,15 +1,10 @@
 package endpoints
 
 import (
-	"crypto/rand"
-	"crypto/sha256"
-	"encoding/hex"
 	"encoding/json"
 	"log"
 	"net/http"
 	"os"
-
-	"github.com/google/uuid"
 )
 
 func (d *Database) ProvisionDevice(w http.ResponseWriter, r *http.Request) {
@@ -40,7 +35,7 @@ func (d *Database) ProvisionDevice(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	hashedAPIKey := hashAPIKey(apiKey)
+	hashedAPIKey := HashAPIKey(apiKey)
 	deviceID := generateUUID()
 
 	_, err = d.DB.Exec("INSERT INTO devices (device_id, api_key) VALUES (?, ?)", deviceID, hashedAPIKey)
@@ -77,22 +72,4 @@ func getRequestSecret(r *http.Request) (string, error) {
 	}
 
 	return data["provisioning_secret"], nil
-}
-
-func generateUUID() string {
-	return uuid.New().String()
-}
-
-func generateAPIKey() (string, error) {
-	bytes := make([]byte, 32)
-	_, err := rand.Read(bytes)
-	if err != nil {
-		return "", err
-	}
-	return hex.EncodeToString(bytes), nil
-}
-
-func hashAPIKey(apiKey string) string {
-	hash := sha256.Sum256([]byte(apiKey))
-	return hex.EncodeToString(hash[:])
 }

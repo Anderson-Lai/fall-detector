@@ -8,19 +8,19 @@ import (
 	"net/http"
 )
 
-
-
 func InitAPI(d *endpoints.Database) {
 	const (
 		postLimit = 1000
 		provisionLimit = 100
 	)
 
-	postRL := middleware.NewRateLimiter(postLimit)
-	provisionRL := middleware.NewRateLimiter(provisionLimit)
+	limitedPost := middleware.NewRateLimiter(postLimit).RateLimit(http.HandlerFunc(d.PostAlert))
+	limitedProvision := middleware.NewRateLimiter(provisionLimit).RateLimit(http.HandlerFunc(d.ProvisionDevice))
 
-	http.Handle("/post_alert", postRL.RateLimit(http.HandlerFunc(d.PostAlert)))
-	http.Handle("/provision_device", provisionRL.RateLimit(http.HandlerFunc(d.ProvisionDevice)))
+	authenticatedPost := middleware.Authenticate(d, limitedPost)
+
+	http.Handle("/post_alert", authenticatedPost)
+	http.Handle("/provision_device", limitedProvision)
 }
 
 func StartServer(isHTTP bool, port int) {

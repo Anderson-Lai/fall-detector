@@ -18,12 +18,12 @@ This monorepo contains all the code for group 26's ECE198 medical device project
 
 ## Backend Features
 
-- [ ] Implement endpoint to post alert requests
+- [x] Implement endpoint to post alert requests
   - [x] Implement basic functionality without authentication
   - [x] Implement alert logging
-  - [ ] Authenticate request using an API key + device ID
+  - [x] Authenticate request using an API key + device ID
   - [x] Generate API keys + device ID using a provisioning secret
-    - [ ] Rate limit endpoint
+    - [x] Rate limit endpoint
 - [ ] Implement automatic notifications
   - [x] Email notifications
   - [ ] SMS notifications

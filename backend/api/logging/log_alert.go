@@ -52,6 +52,8 @@ func createLogFile(filePath string) error {
 			log.Println("Could not create log file: ", err)
 			return err
 		}
+		
+		file.Write([]byte("{}"))
 		file.Close()
 	}
 	return nil
