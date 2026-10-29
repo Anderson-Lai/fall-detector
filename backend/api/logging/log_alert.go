@@ -17,17 +17,17 @@ func InitAlertLogging() {
 	}
 }
 
-func LogAlert(alert types.Alert) {
+func LogAlert(alert types.Alert) error {
 	day := getDay()
 	logName := fmt.Sprintf("%s/%s.log", logsDir, day)
 
 	if err := createLogFile(logName); err != nil {
-		return
+		return err
 	}
 
 	logData, err := readJSONData(logName)
 	if err != nil {
-		logData = make(map[string]types.Alert)
+		return err
 	}
 
 	logData[getNow()] = types.Alert{
@@ -37,8 +37,10 @@ func LogAlert(alert types.Alert) {
 	}
 
 	if err := writeAsJSONData(logName, logData); err != nil {
-		return
+		return err
 	}
+
+	return nil
 }
 
 func getDay() string {
@@ -66,11 +68,13 @@ func createLogFile(filePath string) error {
 func readJSONData(filePath string) (map[string]types.Alert, error) {
 	file, err := os.ReadFile(filePath)
 	if err != nil {
+		log.Println("Could not read log file: ", err)
 		return nil, err
 	}
 
 	var data map[string]types.Alert
 	if err := json.Unmarshal(file, &data); err != nil {
+		log.Println("Could not unmarshal log data: ", err)
 		return nil, err
 	}
 

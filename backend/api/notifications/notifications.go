@@ -63,13 +63,11 @@ func loadEmailSecrets() (emailSecrets, error) {
 	sender := os.Getenv("GMAIL_USERNAME")
 	password := os.Getenv("GMAIL_APP_PASSWORD")
 	if sender == "" || password == "" {
-		log.Fatal("GMAIL_USERNAME or GMAIL_APP_PASSWORD not set in .env file")
 		return emailSecrets{}, errors.New("GMAIL_USERNAME or GMAIL_APP_PASSWORD not set in .env file")
 	}
 
 	recipients := strings.Split(os.Getenv("NOTIFICATION_RECIPIENT_EMAILS"), ",")
 	if len(recipients) == 0 {
-		log.Fatal("NOTIFICATION_RECIPIENT_EMAILS not set in .env file")
 		return emailSecrets{}, errors.New("NOTIFICATION_RECIPIENT_EMAILS not set in .env file")
 	}
 

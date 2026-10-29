@@ -26,7 +26,11 @@ func (d *Database) PostAlert(w http.ResponseWriter, r *http.Request) {
 				http.Error(w, "Failed to send email notification", http.StatusInternalServerError)
 				return
 			}
-			logging.LogAlert(alert)
+			if err := logging.LogAlert(alert); err != nil {
+				log.Println("Error logging alert: ", err)
+				http.Error(w, "Failed to log alert", http.StatusInternalServerError)
+				return
+			}
 		default:
 			http.Error(w, "Invalid alert type", http.StatusBadRequest)
 			return

@@ -20,7 +20,13 @@ func (d *Database) ProvisionDevice(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	requestSecret := getRequestSecret(r)
+	requestSecret, err := getRequestSecret(r)
+	if err != nil {
+		log.Println("Error getting request secret: ", err)
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	
 	if requestSecret != secret {
 		log.Println("Invalid provisioning secret")
 		w.WriteHeader(http.StatusUnauthorized)
@@ -56,23 +62,21 @@ func (d *Database) ProvisionDevice(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	w.WriteHeader(http.StatusOK)
 }
 
 func loadProvisioningSecret() string {
 	return os.Getenv("PROVISIONING_SECRET")
 }
 
-func getRequestSecret(r *http.Request) string {
+func getRequestSecret(r *http.Request) (string, error) {
 	var data map[string]string
 	err := json.NewDecoder(r.Body).Decode(&data)
 
 	if err != nil {
-		log.Println("Error decoding request body: ", err)
-		return ""
+		return "", err
 	}
 
-	return data["secret"]
+	return data["provisioning_secret"], nil
 }
 
 func generateUUID() string {

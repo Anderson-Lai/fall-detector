@@ -10,7 +10,7 @@ secret = os.environ.get("PROVISIONING_SECRET")
 try:
     response = requests.post(
         url,
-        json={"secret": secret},
+        json={"provisioning_secret": secret},
         timeout=10,
     )
 
