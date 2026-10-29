@@ -7,8 +7,6 @@ import (
 	"net/smtp"
 	"os"
 	"strings"
-
-	"github.com/joho/godotenv"
 )
 
 type emailSecrets struct {
@@ -61,11 +59,6 @@ func sendEmailNotification(alert Alert) error {
 }
 
 func loadEmailSecrets() (emailSecrets, error) {
-	if err := godotenv.Load("../.env"); err != nil {
-		log.Fatal("Error loading .env file: ", err)
-		return emailSecrets{}, err
-	}
-
 	sender := os.Getenv("GMAIL_USERNAME")
 	password := os.Getenv("GMAIL_APP_PASSWORD")
 	if sender == "" || password == "" {

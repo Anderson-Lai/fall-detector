@@ -7,7 +7,7 @@ import (
 )
 
 func InitAPI() {
-	http.HandleFunc("/receive_post", receivePost)
+	http.HandleFunc("/post_alert", receivePost)
 }
 
 func StartServer(isHTTP bool, port int) {
