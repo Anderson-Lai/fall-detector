@@ -1,3 +1,35 @@
 # ECE198 Medical Device Monorepo
 
 This monorepo contains all the code for group 26's ECE198 medical device project. The backend (`./backend`) is written in Go, and the firmware for the microcontroller (`./firmware`) is written in C++. Currently, an Arduino Uno R4 Minima is being used for development, but the final version will use an ESP32.
+
+## Firmware Features
+
+- [ ] Implement fall detection
+  - [ ] Read accelerometer and caculate acceleration in g's and m/s^2
+    - [ ] Possible data smoothing and debouncing
+  - [ ] Possible estimation of the **position** of the sensor via approximating the second-order differential equation
+  - [ ] Sending POST request on fall detection
+- [ ] Implement button functionality
+  - [ ] SOS button when fall is **not** detected
+  - [ ] Canceling SOS when fall **is** detected
+    -  [ ] Either cancel on server side (delaying notifications) or client side (RTOS + semaphores)
+- [ ] Implement buzzer functionality
+  - [ ] Activate buzzer on fall detection
+
+## Backend Features
+
+- [ ] Implement endpoint to post alert requests
+  - [x] Implement basic functionality without authentication
+  - [x] Implement alert logging
+  - [ ] Authenticate request using an API key + device ID
+  - [ ] Generate API keys using a GET endpoint + master password
+  - [ ] Proper salting and hashing of master password
+- [ ] Implement automatic notifications
+  - [x] Email notifications
+  - [ ] SMS notifications
+- [ ] Implement endpoint for CCCARE staff to get all logs
+  - [ ] Proper authentication with username + password
+
+## Frontend Features
+- [ ] App to easily upload wifi credentials onto ESP32
+- [ ] Website for CCCARE staff to get all longs
