@@ -1,17 +1,18 @@
-package api
+package endpoints
 
 import (
 	"bytes"
 	"encoding/json"
+	"medical-device/backend/api/types"
 	"net/http"
 	"testing"
 )
 
-func TestReceivePost(t *testing.T) {
-	data := Alert{
+func TestPostAlert(t *testing.T) {
+	data := types.Alert{
 		DeviceID:  "test-device",
-		AlertType: alertSOS,
-		Coordinates: coordinates{
+		AlertType: types.AlertSOS,
+		Coordinates: types.Coordinates{
 			Latitude:  37.7749,
 			Longitude: -122.4194,
 		},

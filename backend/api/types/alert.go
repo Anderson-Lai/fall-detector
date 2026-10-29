@@ -1,15 +1,16 @@
-package api
+package types
 
 type Alert struct {
 	DeviceID string `json:"device_id"`
 	AlertType alertType `json:"alert_type"`
-	Coordinates coordinates `json:"coordinates"`
+	Coordinates Coordinates `json:"coordinates"`
 }
 
 type alertType string
+// kinds of alerts
 const (
-	alertSOS alertType = "SOS"
+	AlertSOS alertType = "SOS"
 )
-type coordinates struct {
+type Coordinates struct {
 	Latitude, Longitude float64
 }

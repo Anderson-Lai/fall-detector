@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"medical-device/backend/api"
+	"medical-device/backend/api/logging"
 
 	"github.com/joho/godotenv"
 )
@@ -16,6 +17,7 @@ func main() {
 	}
 
 	api.InitAPI()
-	api.InitAlertLogging()
+	logging.InitAlertLogging()
+
 	api.StartServer(IS_HTTP, PORT)
 }

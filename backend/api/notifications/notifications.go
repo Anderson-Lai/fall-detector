@@ -1,9 +1,10 @@
-package api
+package notifications
 
 import (
 	"errors"
 	"fmt"
 	"log"
+	"medical-device/backend/api/types"
 	"net/smtp"
 	"os"
 	"strings"
@@ -14,7 +15,7 @@ type emailSecrets struct {
 	Recipients []string
 }
 
-func sendEmailNotification(alert Alert) error {
+func SendEmailNotification(alert types.Alert) error {
 	details, err := loadEmailSecrets()
 	if err != nil {
 		return err
@@ -24,7 +25,7 @@ func sendEmailNotification(alert Alert) error {
 
 	var alertType string
 	switch alert.AlertType {
-		case alertSOS:
+		case types.AlertSOS:
 			alertType = "SOS"
 		default:
 			return errors.New("Invalid alert type")

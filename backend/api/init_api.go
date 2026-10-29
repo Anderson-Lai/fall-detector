@@ -3,11 +3,12 @@ package api
 import (
 	"fmt"
 	"log"
+	"medical-device/backend/api/endpoints"
 	"net/http"
 )
 
 func InitAPI() {
-	http.HandleFunc("/post_alert", receivePost)
+	http.HandleFunc("/post_alert", endpoints.PostAlert)
 }
 
 func StartServer(isHTTP bool, port int) {

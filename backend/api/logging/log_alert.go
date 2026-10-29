@@ -1,9 +1,10 @@
-package api
+package logging
 
 import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"medical-device/backend/api/types"
 	"os"
 	"time"
 )
@@ -16,7 +17,7 @@ func InitAlertLogging() {
 	}
 }
 
-func LogAlert(alert Alert) {
+func LogAlert(alert types.Alert) {
 	day := getDay()
 	logName := fmt.Sprintf("%s/%s.log", logsDir, day)
 
@@ -26,10 +27,10 @@ func LogAlert(alert Alert) {
 
 	logData, err := readJSONData(logName)
 	if err != nil {
-		logData = make(map[string]Alert)
+		logData = make(map[string]types.Alert)
 	}
 
-	logData[getNow()] = Alert{
+	logData[getNow()] = types.Alert{
 		DeviceID:    alert.DeviceID,
 		AlertType:   alert.AlertType,
 		Coordinates: alert.Coordinates,
@@ -62,13 +63,13 @@ func createLogFile(filePath string) error {
 	return nil
 }
 
-func readJSONData(filePath string) (map[string]Alert, error) {
+func readJSONData(filePath string) (map[string]types.Alert, error) {
 	file, err := os.ReadFile(filePath)
 	if err != nil {
 		return nil, err
 	}
 
-	var data map[string]Alert
+	var data map[string]types.Alert
 	if err := json.Unmarshal(file, &data); err != nil {
 		return nil, err
 	}
@@ -76,7 +77,7 @@ func readJSONData(filePath string) (map[string]Alert, error) {
 	return data, nil
 }
 
-func writeAsJSONData(filePath string, data map[string]Alert) error {
+func writeAsJSONData(filePath string, data map[string]types.Alert) error {
 	jsonData, err := json.MarshalIndent(data, "", "  ")
 	if err != nil {
 		log.Println("Could not marshal log data: ", err)
