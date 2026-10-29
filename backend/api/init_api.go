@@ -7,8 +7,9 @@ import (
 	"net/http"
 )
 
-func InitAPI() {
-	http.HandleFunc("/post_alert", endpoints.PostAlert)
+func InitAPI(d *endpoints.Database) {
+	http.HandleFunc("/post_alert", d.PostAlert)
+	http.HandleFunc("/provision_device", d.ProvisionDevice)
 }
 
 func StartServer(isHTTP bool, port int) {

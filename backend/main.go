@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"medical-device/backend/api"
+	"medical-device/backend/api/endpoints"
 	"medical-device/backend/api/logging"
 
 	"github.com/joho/godotenv"
@@ -16,8 +17,10 @@ func main() {
 		log.Fatal("Error loading .env file: ", err)
 	}
 
-	api.InitAPI()
 	logging.InitAlertLogging()
+	db := endpoints.InitializeDatabase()
+	database := &endpoints.Database{DB: db}
+	api.InitAPI(database)
 
 	api.StartServer(IS_HTTP, PORT)
 }

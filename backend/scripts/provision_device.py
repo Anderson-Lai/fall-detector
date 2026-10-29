@@ -1,7 +1,11 @@
+import os
 import requests
+from dotenv import load_dotenv
 
-url = "http://localhost:8080/api/admin/devices"
-secret = ""
+url = "http://localhost:8080/provision_device"
+
+load_dotenv()
+secret = os.environ.get("PROVISIONING_SECRET")
 
 try:
     response = requests.post(

@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func PostAlert(w http.ResponseWriter, r *http.Request) {
+func (d *Database) PostAlert(w http.ResponseWriter, r *http.Request) {
 	var alert types.Alert
 
 	err := json.NewDecoder(r.Body).Decode(&alert)
