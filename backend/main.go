@@ -9,5 +9,6 @@ const PORT = 8080
 
 func main() {
 	api.InitAPI()
+	api.InitAlertLogging()
 	api.StartServer(IS_HTTP, PORT)
 }

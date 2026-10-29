@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 )
 
@@ -16,7 +17,13 @@ func receivePost(w http.ResponseWriter, r *http.Request) {
 
 	switch alert.AlertType {
 		case alertSOS:
-			// TODO: handle SOS alert; email and/or sms
+			err := sendEmailNotification(alert)
+			if err != nil {
+				log.Println("Error sending email notification: ", err)
+				http.Error(w, "Failed to send email notification", http.StatusInternalServerError)
+				return
+			}
+			LogAlert(alert)
 		default:
 			http.Error(w, "Invalid alert type", http.StatusBadRequest)
 			return
