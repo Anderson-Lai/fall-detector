@@ -22,8 +22,8 @@ This monorepo contains all the code for group 26's ECE198 medical device project
   - [x] Implement basic functionality without authentication
   - [x] Implement alert logging
   - [ ] Authenticate request using an API key + device ID
-  - [ ] Generate API keys using a GET endpoint + master password
-  - [ ] Proper salting and hashing of master password
+  - [x] Generate API keys + device ID using a provisioning secret
+    - [ ] Rate limit endpoint
 - [ ] Implement automatic notifications
   - [x] Email notifications
   - [ ] SMS notifications
