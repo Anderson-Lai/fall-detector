@@ -8,16 +8,16 @@ import (
 	"net/http"
 )
 
-func InitAPI(d *endpoints.Database) {
+func InitAPI(a *endpoints.API) {
 	const (
 		postLimit = 1000
 		provisionLimit = 100
 	)
 
-	limitedPost := middleware.NewRateLimiter(postLimit).RateLimit(http.HandlerFunc(d.PostAlert))
-	limitedProvision := middleware.NewRateLimiter(provisionLimit).RateLimit(http.HandlerFunc(d.ProvisionDevice))
+	limitedPost := middleware.NewRateLimiter(postLimit).RateLimit(http.HandlerFunc(a.PostAlert))
+	limitedProvision := middleware.NewRateLimiter(provisionLimit).RateLimit(http.HandlerFunc(a.ProvisionDevice))
 
-	authenticatedPost := middleware.Authenticate(d, limitedPost)
+	authenticatedPost := middleware.Authenticate(a, limitedPost)
 
 	http.Handle("/post_alert", authenticatedPost)
 	http.Handle("/provision_device", limitedProvision)

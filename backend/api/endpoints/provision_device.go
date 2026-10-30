@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func (d *Database) ProvisionDevice(w http.ResponseWriter, r *http.Request) {
+func (a *API) ProvisionDevice(w http.ResponseWriter, r *http.Request) {
 	secret := loadProvisioningSecret()
 	if secret == "" {
 		log.Fatal("Provisioning secret not set in environment variables")
@@ -38,7 +38,7 @@ func (d *Database) ProvisionDevice(w http.ResponseWriter, r *http.Request) {
 	hashedAPIKey := HashAPIKey(apiKey)
 	deviceID := generateUUID()
 
-	_, err = d.DB.Exec("INSERT INTO devices (device_id, api_key) VALUES (?, ?)", deviceID, hashedAPIKey)
+	_, err = a.DB.Exec("INSERT INTO devices (device_id, api_key) VALUES (?, ?)", deviceID, hashedAPIKey)
 	if err != nil {
 		log.Println("Error inserting device into database: ", err)
 		w.WriteHeader(http.StatusInternalServerError)

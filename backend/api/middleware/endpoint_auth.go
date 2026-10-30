@@ -8,12 +8,12 @@ import (
 	"net/http"
 )
 
-func Authenticate(db *endpoints.Database, next http.Handler) http.Handler {
+func Authenticate(a *endpoints.API, next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		apiKey := r.Header.Get("api_key")
 		deviceID := r.Header.Get("device_id")
 
-		row := db.DB.QueryRow(`SELECT device_id, api_key FROM devices WHERE 
+		row := a.DB.QueryRow(`SELECT device_id, api_key FROM devices WHERE 
 			device_id = (?) AND api_key = (?)`, deviceID, endpoints.HashAPIKey(apiKey))
 
 		err := row.Scan(new(string), new(string))

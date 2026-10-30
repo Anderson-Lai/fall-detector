@@ -17,10 +17,13 @@ func main() {
 		log.Fatal("Error loading .env file: ", err)
 	}
 
+	resources := &endpoints.API{
+		DB: endpoints.InitializeDatabase(),
+	}
+	defer resources.DB.Close()
+
 	logging.InitAlertLogging()
-	db := endpoints.InitializeDatabase()
-	database := &endpoints.Database{DB: db}
-	api.InitAPI(database)
+	api.InitAPI(resources)
 
 	api.StartServer(IS_HTTP, PORT)
 }

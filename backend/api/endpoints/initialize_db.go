@@ -7,7 +7,7 @@ import (
 	_ "modernc.org/sqlite"
 )
 
-type Database struct {
+type API struct {
 	DB *sql.DB
 }
 
