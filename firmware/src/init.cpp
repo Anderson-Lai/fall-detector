@@ -2,7 +2,7 @@
 
 #include "init.hpp"
 
-void Init::InitSerial(int baudRate) {
+void Init::InitSerial(const unsigned long baudRate) {
     Serial.begin(baudRate);
     Serial.println("Starting...");
 }

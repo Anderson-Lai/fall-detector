@@ -17,6 +17,8 @@ private:
 
     AccelerometerMode m_mode;
     bool m_isDebug;
+private:
+    static constexpr auto ADC_ATTENUATION = ADC_11db;
 public:
     Accelerometer(const uint8_t xPin, const uint8_t yPin, const uint8_t zPin, const uint8_t gselectPin, 
         const AccelerometerMode mode, const bool isDebug = false);

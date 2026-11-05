@@ -3,8 +3,6 @@
 
 #include "accelerometer.hpp"
 
-#define ADC_ATTENUATION ADC_11db
-
 Accelerometer::Accelerometer(const uint8_t xPin, const uint8_t yPin, const uint8_t zPin, 
         const uint8_t gselectPin, const AccelerometerMode mode, const bool isDebug)
     : m_xPin(xPin), m_yPin(yPin), m_zPin(zPin), m_gselectPin(gselectPin), 
