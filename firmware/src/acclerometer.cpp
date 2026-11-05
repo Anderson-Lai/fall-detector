@@ -31,6 +31,14 @@ void Accelerometer::SetMode(AccelerometerMode mode) {
         : digitalWrite(m_gselectPin, HIGH);
 }
 
+bool Accelerometer::IsDebug() const {
+    return m_isDebug;
+}
+
+void Accelerometer::SetDebug(bool isDebug) {
+    m_isDebug = isDebug;
+}
+
 std::array<double, 3> Accelerometer::GetAccelerations() const {
     auto readings = ReadVoltages();
     readings = VoltagesToGs(readings);
@@ -45,14 +53,6 @@ double Accelerometer::GetAcclerationMagnitude() const {
     return sqrt(accelerations[0] * accelerations[0] + 
         accelerations[1] * accelerations[1] + 
         accelerations[2] * accelerations[2]);
-}
-
-bool Accelerometer::IsDebug() const {
-    return m_isDebug;
-}
-
-void Accelerometer::SetDebug(bool isDebug) {
-    m_isDebug = isDebug;
 }
 
 std::array<double, 3> Accelerometer::ReadVoltages() const {

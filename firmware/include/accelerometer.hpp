@@ -23,13 +23,13 @@ public:
 
     AccelerometerMode GetMode() const;
     void SetMode(AccelerometerMode mode);
+
+    bool IsDebug() const;
+    void SetDebug(bool isDebug);
 public:
     // in order of 'x, y, z'
     std::array<double, 3> GetAccelerations() const;
     double GetAcclerationMagnitude() const;
-
-    bool IsDebug() const;
-    void SetDebug(bool isDebug);
 private:
     std::array<double, 3> ReadVoltages() const;
 
