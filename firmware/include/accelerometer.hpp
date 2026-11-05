@@ -15,53 +15,45 @@ private:
     uint8_t m_zPin;
     uint8_t m_gselectPin;
 
-    double m_x;
-    double m_y;
-    double m_z;
-
     AccelerometerMode m_mode;
     bool m_isDebug;
 public:
     Accelerometer(uint8_t xPin, uint8_t yPin, uint8_t zPin, uint8_t gselectPin, 
-        AccelerometerMode mode);
-    Accelerometer(uint8_t xPin, uint8_t yPin, uint8_t zPin, uint8_t gselectPin, 
-        AccelerometerMode mode, bool isDebug);
+        AccelerometerMode mode, bool isDebug = false);
 
     AccelerometerMode GetMode() const;
     void SetMode(AccelerometerMode mode);
 public:
-    double GetX() const;
-    double GetY() const;
-    double GetZ() const;
-
     // in order of 'x, y, z'
-    std::array<double, 3> GetAccelerations();
-    double GetAcclerationMagnitude();
+    std::array<double, 3> GetAccelerations() const;
+    double GetAcclerationMagnitude() const;
 
     bool IsDebug() const;
     void SetDebug(bool isDebug);
 private:
-    void ReadVoltages();
+    std::array<double, 3> ReadVoltages() const;
 
+    // constants from MMA7361 datasheet
     // MMA7361 accelerometer conversions
-    constexpr static double LOW_ACCEL_VOLTS_MV_PER_G = 800;
-    constexpr static double HIGH_ACCEL_VOLTS_MV_PER_G = 206;
-    constexpr static double ZERO_G_X_VOLTAGE_MV = 1650;
-    constexpr static double ZERO_G_Y_VOLTAGE_MV = 1650;
-    constexpr static double ZERO_G_Z_VOLTAGE_MV = 1650;
-    void VoltagesToGs(const std::array<uint32_t, 3>& voltages);
+    static constexpr double LOW_ACCEL_VOLTS_MV_PER_G = 800;
+    static constexpr double HIGH_ACCEL_VOLTS_MV_PER_G = 206;
+
+    // zero-g voltage in millivolts (note: these values could (should) be different for each axis; however, instead
+    // of calibrating the zero-g voltage for each axis, we will instead do all the calibration at the end in m/s^2)
+    static constexpr double ZERO_G_VOLTAGE_MV = 1650;
+    std::array<double, 3> VoltagesToGs(const std::array<double, 3>& voltages) const;
 
     // converts g's to m/s^2
-    constexpr static double GRAVITY = 9.81;
-    void GsToAccelerations();
+    static constexpr double GRAVITY = 9.81;
+    static std::array<double, 3> GsToAccelerations(const std::array<double, 3>& gs);
 
     // low acceleration calibration offsets
-    constexpr static double X_LOW_OFFSET = -0.0020;
-    constexpr static double Y_LOW_OFFSET = 1.8171;
-    constexpr static double Z_LOW_OFFSET = -3.0934;
+    static constexpr double X_LOW_OFFSET = -0.0020;
+    static constexpr double Y_LOW_OFFSET = 1.8171;
+    static constexpr double Z_LOW_OFFSET = -3.0934;
     // high acceleration calibration offsets
-    constexpr static double X_HIGH_OFFSET = 2.0303;
-    constexpr static double Y_HIGH_OFFSET = 3.6834;
-    constexpr static double Z_HIGH_OFFSET = -2.6814;
-    void ApplyOffsets();
+    static constexpr double X_HIGH_OFFSET = 2.0303;
+    static constexpr double Y_HIGH_OFFSET = 3.6834;
+    static constexpr double Z_HIGH_OFFSET = -2.6814;
+    std::array<double, 3> ApplyOffsets(const std::array<double, 3>& accelerations) const;
 };
