@@ -6,10 +6,10 @@ Documentation is available at [./docs](./docs).
 
 ## Firmware Features
 
-- [ ] Implement fall detection
+- [x] Implement fall detection
   - [x] Read accelerometer and caculate acceleration in g's and m/s^2
-  - [ ] Sending POST request on fall detection
   - [ ] Possible estimation of the **position** of the sensor via approximating the second-order differential equation
+- [ ] Sending POST request on fall detection
 - [ ] Implement button functionality
   - [ ] SOS button when fall is **not** detected
   - [ ] Canceling SOS when fall **is** detected
