@@ -1,16 +1,15 @@
 # ECE198 Medical Device Monorepo
 
-This monorepo contains all the code for group 26's ECE198 medical device project. The backend (`./backend`) is written in Go, and the firmware for the microcontroller (`./firmware`) is written in C++. Currently, an Arduino Uno R4 Minima is being used for development, but the final version will use an ESP32.
+This monorepo contains all the code for group 26's ECE198 medical device project. The backend (`./backend`) is written in Go, and the firmware for the microcontroller (`./firmware`) is written in C++. The microcontroller is an ESP32-C3 SuperMini.
 
 Documentation is available at [./docs](./docs).
 
 ## Firmware Features
 
 - [ ] Implement fall detection
-  - [ ] Read accelerometer and caculate acceleration in g's and m/s^2
-    - [ ] Possible data smoothing and debouncing
-  - [ ] Possible estimation of the **position** of the sensor via approximating the second-order differential equation
+  - [x] Read accelerometer and caculate acceleration in g's and m/s^2
   - [ ] Sending POST request on fall detection
+  - [ ] Possible estimation of the **position** of the sensor via approximating the second-order differential equation
 - [ ] Implement button functionality
   - [ ] SOS button when fall is **not** detected
   - [ ] Canceling SOS when fall **is** detected
