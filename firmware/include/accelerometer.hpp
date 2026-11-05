@@ -18,8 +18,8 @@ private:
     AccelerometerMode m_mode;
     bool m_isDebug;
 public:
-    Accelerometer(uint8_t xPin, uint8_t yPin, uint8_t zPin, uint8_t gselectPin, 
-        AccelerometerMode mode, bool isDebug = false);
+    Accelerometer(const uint8_t xPin, const uint8_t yPin, const uint8_t zPin, const uint8_t gselectPin, 
+        const AccelerometerMode mode, const bool isDebug = false);
 
     AccelerometerMode GetMode() const;
     void SetMode(AccelerometerMode mode);

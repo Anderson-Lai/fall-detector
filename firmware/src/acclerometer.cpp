@@ -3,8 +3,10 @@
 
 #include "accelerometer.hpp"
 
-Accelerometer::Accelerometer(uint8_t xPin, uint8_t yPin, uint8_t zPin, 
-        uint8_t gselectPin, AccelerometerMode mode, bool isDebug)
+#define ADC_ATTENUATION ADC_11db
+
+Accelerometer::Accelerometer(const uint8_t xPin, const uint8_t yPin, const uint8_t zPin, 
+        const uint8_t gselectPin, const AccelerometerMode mode, const bool isDebug)
     : m_xPin(xPin), m_yPin(yPin), m_zPin(zPin), m_gselectPin(gselectPin), 
         m_mode(mode), m_isDebug(isDebug) {
 
@@ -13,9 +15,9 @@ Accelerometer::Accelerometer(uint8_t xPin, uint8_t yPin, uint8_t zPin,
     pinMode(zPin, INPUT);
     pinMode(gselectPin, OUTPUT);
 
-    analogSetPinAttenuation(xPin, ADC_11db);
-    analogSetPinAttenuation(yPin, ADC_11db);
-    analogSetPinAttenuation(zPin, ADC_11db);
+    analogSetPinAttenuation(xPin, ADC_ATTENUATION);
+    analogSetPinAttenuation(yPin, ADC_ATTENUATION);
+    analogSetPinAttenuation(zPin, ADC_ATTENUATION);
 
     m_mode == AccelerometerMode::LOW_ACCEL ? digitalWrite(gselectPin, LOW) 
         : digitalWrite(gselectPin, HIGH);

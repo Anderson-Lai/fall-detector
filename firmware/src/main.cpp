@@ -9,8 +9,11 @@
 #define ACCEL_MODE AccelerometerMode::HIGH_ACCEL
 #define ACCEL_IS_DEBUG false
 
+#define SERIAL_BAUD_RATE 115200
+#define LOOP_DELAY_MS 10
+
 void setup() {
-  Init::InitSerial(115200);
+  Init::InitSerial(SERIAL_BAUD_RATE);
   Init::PulldownAllPins();
 }
 
@@ -28,5 +31,5 @@ void loop() {
   Serial.print("Magnitude: ");
   Serial.println(magnitude);
 
-  delay(10);
+  delay(LOOP_DELAY_MS);
 }
