@@ -1,8 +1,6 @@
 #include <Arduino.h>
 
-#include "accelerometer.hpp"
-#include "accelerometer_constants.hpp"
-
+#include "globals.hpp"
 #include "init.hpp"
 
 void setup() {
@@ -11,19 +9,13 @@ void setup() {
 }
 
 void loop() {
-  Accelerometer accel(InitAccelerometerConstants::PIN_X, InitAccelerometerConstants::PIN_Y, 
-    InitAccelerometerConstants::PIN_Z, InitAccelerometerConstants::PIN_GSELECT, 
-    InitAccelerometerConstants::MODE, InitAccelerometerConstants::IS_DEBUG);
+  Globals::fall.SampleAcceleration();
+  if (Globals::fall.IsFallDetected()) {
+    Serial.println("Fall detected!");
+    Globals::fall.ResetAccelerationHistory();
 
-  auto accelerations = accel.GetAccelerations();
-  double magnitude = accel.GetAcclerationMagnitude();
-  for (const auto& acceleration : accelerations) {
-    Serial.print(acceleration);
-    Serial.print(", ");
+    delay(1'000); // delay for 1 second to prevent bouncing
   }
-
-  Serial.print("Magnitude: ");
-  Serial.println(magnitude);
 
   delay(Init::LOOP_DELAY_MS);
 }

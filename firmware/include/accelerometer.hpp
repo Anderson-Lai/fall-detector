@@ -1,7 +1,9 @@
 #pragma once
 
-#include <cstdint>
+#include <Arduino.h>
+
 #include <array>
+#include <cstdint>
 
 enum class AccelerometerMode {
     LOW_ACCEL,
