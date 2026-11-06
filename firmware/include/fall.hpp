@@ -13,9 +13,9 @@ public:
 public:
     void SampleAcceleration();
 
-    static constexpr double FALL_THRESHOLD = 100.0; // m/s^2
+    static constexpr double FALL_THRESHOLD = 75.0; // m/s^2
     bool IsFallDetected() const;
-    
+
     void ResetAccelerationHistory();
 private:
     void InsertAcceleration(const double acceleration);
