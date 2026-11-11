@@ -2,9 +2,9 @@ import os
 import requests
 from dotenv import load_dotenv
 
-url = "http://localhost:8080/provision_device"
-
 load_dotenv()
+url = os.environ.get("BACKEND_URL")
+url += "/provision_device"
 secret = os.environ.get("PROVISIONING_SECRET")
 
 try:
