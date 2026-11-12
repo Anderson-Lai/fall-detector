@@ -25,8 +25,10 @@ func InitAPI(a *endpoints.API) {
 
 func StartServer(isHTTP bool, port int) {
 	if isHTTP {
-		portStr := fmt.Sprintf(":%d", port)
-		log.Printf("Starting HTTP server at http://localhost%s\n", portStr)
-		http.ListenAndServe(portStr, nil)
+		address := fmt.Sprintf("127.0.0.1:%d", port)
+		log.Printf("Starting HTTP server at http://%s\n", address)
+		if err := http.ListenAndServe(address, nil); err != nil {
+			log.Fatalf("Error starting HTTP server: %v", err)
+		}
 	}
 }
