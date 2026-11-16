@@ -9,7 +9,7 @@ namespace Init {
     void InitSerial(const unsigned long baudRate);
     void PulldownAllPins();
 
-    inline constexpr int WIFI_CONNECT_RETRY_TIMEOUT_MS = 750;
-    inline constexpr int WIFI_CONNECT_MAX_RETRIES = 10;
+    inline constexpr uint32_t WIFI_CONNECT_RETRY_TIMEOUT_MS = 750;
+    inline constexpr uint32_t WIFI_CONNECT_MAX_RETRIES = 10;
     bool ConnectToWifi();
 }

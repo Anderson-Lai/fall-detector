@@ -21,7 +21,7 @@ bool Init::ConnectToWifi() {
     WiFi.begin(WifiCredentials::SSID, WifiCredentials::PASSWORD);
     Serial.print("Connecting to Wi-Fi");
 
-    for (int i = 0; i < Init::WIFI_CONNECT_MAX_RETRIES; ++i) {
+    for (uint32_t i = 0; i < Init::WIFI_CONNECT_MAX_RETRIES; ++i) {
         if (WiFi.status() == WL_CONNECTED) {
             break;
         }
