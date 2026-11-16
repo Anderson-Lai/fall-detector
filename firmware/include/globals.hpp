@@ -12,7 +12,6 @@ namespace Globals {
         inline constexpr AccelerometerMode MODE = AccelerometerMode::HIGH_ACCEL;
         inline constexpr bool IS_DEBUG = false;
     }
-    
     inline const Accelerometer accelerometer(InitAccelerometerConstants::PIN_X, InitAccelerometerConstants::PIN_Y, 
         InitAccelerometerConstants::PIN_Z, InitAccelerometerConstants::PIN_GSELECT, 
         InitAccelerometerConstants::MODE, InitAccelerometerConstants::IS_DEBUG);

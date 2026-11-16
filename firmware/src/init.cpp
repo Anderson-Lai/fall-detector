@@ -21,15 +21,15 @@ bool Init::ConnectToWifi() {
     WiFi.begin(WifiCredentials::SSID, WifiCredentials::PASSWORD);
     Serial.print("Connecting to Wi-Fi");
 
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < Init::WIFI_CONNECT_MAX_RETRIES; ++i) {
         if (WiFi.status() == WL_CONNECTED) {
             break;
         }
 
-        delay(750);
+        delay(Init::WIFI_CONNECT_RETRY_TIMEOUT_MS);
         Serial.print(".");
 
-        if (i == 9) {
+        if (i == Init::WIFI_CONNECT_MAX_RETRIES - 1) {
             Serial.println();
             Serial.println("Failed to connect to Wi-Fi");
             return false;

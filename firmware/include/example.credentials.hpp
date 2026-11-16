@@ -1,6 +1,6 @@
 #pragma once
 
 namespace WifiCredentials {
-    constexpr char SSID[] = "xxx";
-    constexpr char PASSWORD[] = "xxx";
+    inline constexpr char SSID[] = "xxx";
+    inline constexpr char PASSWORD[] = "xxx";
 }
