@@ -6,7 +6,9 @@
 void setup() {
   Init::InitSerial(Init::SERIAL_BAUD_RATE);
   Init::PulldownAllPins();
-  Init::ConnectToWifi();
+  if (!Init::ConnectToWifi()) {
+    Serial.println("Failed to connect to Wi-Fi. Continuing without Wi-Fi.");
+  }
 }
 
 void loop() {

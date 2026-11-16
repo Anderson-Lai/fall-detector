@@ -16,13 +16,26 @@ void Init::PulldownAllPins() {
     }
 }
 
-void Init::ConnectToWifi() {
+bool Init::ConnectToWifi() {
+    WiFi.mode(WIFI_STA);
     WiFi.begin(WifiCredentials::SSID, WifiCredentials::PASSWORD);
     Serial.print("Connecting to Wi-Fi");
-    while (WiFi.status() != WL_CONNECTED) {
-        delay(500);
+
+    for (int i = 0; i < 10; ++i) {
+        if (WiFi.status() == WL_CONNECTED) {
+            break;
+        }
+
+        delay(750);
         Serial.print(".");
+
+        if (i == 9) {
+            Serial.println();
+            Serial.println("Failed to connect to Wi-Fi");
+            return false;
+        }
     }
+
     Serial.println();
     Serial.println("Connected to Wi-Fi");
 
@@ -32,4 +45,6 @@ void Init::ConnectToWifi() {
     Serial.print("Signal Strength (RSSI): ");
     Serial.print(WiFi.RSSI());
     Serial.println(" dBm");
+
+    return true;
 }
