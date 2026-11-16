@@ -8,4 +8,5 @@ namespace Init {
 
     void InitSerial(const unsigned long baudRate);
     void PulldownAllPins();
+    void ConnectToWifi();
 }

@@ -2,7 +2,7 @@
 
 This monorepo contains all the code for group 26's ECE198 medical device project. The backend (`./backend`) is written in Go, and the firmware for the microcontroller (`./firmware`) is written in C++. The microcontroller is an ESP32-C3 SuperMini.
 
-Documentation is available at [./docs](./docs).
+Documentation is available at [./docs](./docs). For proper functionality, ensure there is a copy of `.env` in `./backend` and a copy of `credentials.hpp` in `./firmware/include` with appropriate entries.
 
 ## Firmware Features
 
