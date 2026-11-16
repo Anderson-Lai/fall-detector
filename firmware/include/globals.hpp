@@ -15,5 +15,9 @@ namespace Globals {
     inline const Accelerometer accelerometer(InitAccelerometerConstants::PIN_X, InitAccelerometerConstants::PIN_Y, 
         InitAccelerometerConstants::PIN_Z, InitAccelerometerConstants::PIN_GSELECT, 
         InitAccelerometerConstants::MODE, InitAccelerometerConstants::IS_DEBUG);
-    inline Fall fall(accelerometer);
+    
+    namespace InitFallConstants {
+        inline constexpr uint32_t DEBOUNCE_LENGTH_MS = 1'000;
+    }
+    inline Fall fall(accelerometer, InitFallConstants::DEBOUNCE_LENGTH_MS);
 }

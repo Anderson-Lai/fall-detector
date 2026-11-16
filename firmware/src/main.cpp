@@ -15,9 +15,9 @@ void loop() {
   Globals::fall.SampleAcceleration();
   if (Globals::fall.IsFallDetected()) {
     Serial.println("Fall detected!");
-    Globals::fall.ResetAccelerationHistory();
 
-    delay(1'000); // delay for 1 second to prevent bouncing
+    Globals::fall.ResetAccelerationHistory();
+    Globals::fall.Debounce();
   }
 
   delay(Init::LOOP_DELAY_MS);

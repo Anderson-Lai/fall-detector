@@ -1,9 +1,13 @@
+#include <Arduino.h>
+
 #include <algorithm>
 #include <cmath>
 
 #include "fall.hpp"
 
-Fall::Fall(const Accelerometer& accelerometer) : m_accelerometer(accelerometer) {
+Fall::Fall(const Accelerometer &accelerometer, const uint32_t debounceLengthMS)
+    : m_accelerometer(accelerometer), m_debounceLength(debounceLengthMS)
+{
     m_accelerationHistory.fill(0.0);
 }
 
@@ -20,6 +24,10 @@ bool Fall::IsFallDetected() const {
 
 void Fall::ResetAccelerationHistory() {
     m_accelerationHistory.fill(0.0);
+}
+
+void Fall::Debounce() {
+    delay(m_debounceLength);
 }
 
 void Fall::InsertAcceleration(const double acceleration) {
