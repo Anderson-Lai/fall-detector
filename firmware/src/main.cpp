@@ -6,6 +6,7 @@
 void setup() {
   Init::InitSerial(Init::SERIAL_BAUD_RATE);
   Init::PulldownAllPins();
+  Init::ConnectToWifi();
 }
 
 void loop() {
