@@ -1,6 +1,6 @@
-# ECE198 Medical Device Monorepo
+# Fall Detector Monorepo
 
-This monorepo contains all the code for group 26's ECE198 medical device project. The backend (`./backend`) is written in Go, and the firmware for the microcontroller (`./firmware`) is written in C++. The microcontroller is an ESP32-C3 SuperMini.
+This monorepo contains all the code for a fall detector. The backend (`./backend`) is written in Go, and the firmware for the microcontroller (`./firmware`) is written in C++. The microcontroller is an ESP32-C3 SuperMini.
 
 Documentation is available at [./docs](./docs). Each component of the project (the backend and the firmware) *may* each have their own `README.md` for less pertinent notes and documentation. 
 
