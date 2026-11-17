@@ -3,3 +3,4 @@
 > - Do **not** use pins 20 and 21
 > - Prefer not to use pins 2, 8, and 9 since they have 'leaking' voltage
 >   - They may be used for **only output**
+> - The character `’` may be useful for WiFi SSID's. It is a 'curly' apostrophe.

@@ -54,6 +54,9 @@ bool Init::ConnectToWifi() {
     Serial.println();
     Serial.println("Connected to Wi-Fi");
 
+    Serial.print("SSID: ");
+    Serial.println(WiFi.SSID());
+
     Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
 
