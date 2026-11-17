@@ -12,15 +12,26 @@ void setup() {
   }
 
   // needed for TLS
+  Serial.println();
   if (!Init::SynchronizeTime()) {
     Serial.println("Failed to synchronize time. Continuing without time synchronization.");
   }
+
+  Serial.println();
+  Serial.println("Setup complete.");
+  Serial.println();
 }
 
 void loop() {
   Globals::fall.SampleAcceleration();
   if (Globals::fall.IsFallDetected()) {
     Serial.println("Fall detected!");
+
+    if (Globals::api.SendAlert("SOS")) {
+      Serial.println("Fall alert sent successfully!");
+    } else {
+      Serial.println("Failed to send fall alert.");
+    }
 
     Globals::fall.ResetAccelerationHistory();
     Globals::fall.Debounce();

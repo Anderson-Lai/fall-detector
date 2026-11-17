@@ -23,5 +23,6 @@ namespace Globals {
     }
     inline Fall fall(accelerometer, InitFallConstants::DEBOUNCE_LENGTH_MS);
 
-    inline Api api(APICredentials::API_URL, APICredentials::CERTIFICATE, APICredentials::API_KEY, APICredentials::DEVICE_ID);
+    inline Api api(APICredentials::API_URL, APICredentials::CERTIFICATE, 
+        APICredentials::API_KEY, APICredentials::DEVICE_ID);
 }
