@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <WiFi.h>
+#include <time.h>
 
 #include "init.hpp"
 #include "credentials.hpp"
@@ -65,4 +66,25 @@ bool Init::ConnectToWifi() {
     Serial.println(" dBm");
 
     return true;
+}
+
+bool Init::SynchronizeTime() {
+    configTime(0, 0, "pool.ntp.org", "time.nist.gov");
+
+    Serial.print("Synchronizing time");
+
+    for (uint32_t i = 0; i < Init::TIME_SYNC_MAX_RETRIES; ++i) {
+        struct tm timeinfo;
+        if (getLocalTime(&timeinfo, Init::TIME_SYNC_RETRY_TIMEOUT_MS)) {
+            Serial.println();
+            Serial.println("Time synchronized!");
+            return true;
+        }
+
+        Serial.print(".");
+    }
+
+    Serial.println();
+    Serial.println("Failed to synchronize time");
+    return false;
 }

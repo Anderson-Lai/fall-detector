@@ -6,8 +6,14 @@
 void setup() {
   Init::InitSerial(Init::SERIAL_BAUD_RATE);
   Init::PulldownAllPins();
+
   if (!Init::ConnectToWifi()) {
     Serial.println("Failed to connect to Wi-Fi. Continuing without Wi-Fi.");
+  }
+
+  // needed for TLS
+  if (!Init::SynchronizeTime()) {
+    Serial.println("Failed to synchronize time. Continuing without time synchronization.");
   }
 }
 
