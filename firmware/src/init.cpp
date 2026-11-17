@@ -18,6 +18,21 @@ void Init::PulldownAllPins() {
 
 bool Init::ConnectToWifi() {
     WiFi.mode(WIFI_STA);
+
+    Serial.println("Scanning for WiFi networks...");
+    int networks = WiFi.scanNetworks();
+    for (int i = 0; i < networks; i++) {
+        Serial.print("SSID: ");
+        Serial.print(WiFi.SSID(i));
+
+        Serial.print(" | RSSI: ");
+        Serial.print(WiFi.RSSI(i));
+
+        Serial.print(" | Channel: ");
+        Serial.println(WiFi.channel(i));
+    }
+
+    Serial.println();
     WiFi.begin(WifiCredentials::SSID, WifiCredentials::PASSWORD);
     Serial.print("Connecting to Wi-Fi");
 
