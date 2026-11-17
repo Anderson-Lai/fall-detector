@@ -19,7 +19,8 @@ bool Api::SendAlert(const char *alertType) {
     }
 
     http.addHeader("Content-Type", "application/json");
-    http.addHeader("x-api-key", m_apiKey);
+    http.addHeader("api_key", m_apiKey);
+    http.addHeader("device_id", m_deviceId);
 
     Alert alert = {
         .DeviceID = m_deviceId,
