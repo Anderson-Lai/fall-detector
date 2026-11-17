@@ -4,4 +4,6 @@
 
 #include "request_types.hpp"
 
-String SerializeAlert(const Alert& alert);
+namespace JSON {
+    String SerializeAlert(const Alert& alert);
+}

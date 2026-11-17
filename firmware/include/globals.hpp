@@ -2,6 +2,8 @@
 
 #include "accelerometer.hpp"
 #include "fall.hpp"
+#include "credentials.hpp"
+#include "api.hpp"
 
 namespace Globals {
     namespace InitAccelerometerConstants {
@@ -20,4 +22,6 @@ namespace Globals {
         inline constexpr uint32_t DEBOUNCE_LENGTH_MS = 1'000;
     }
     inline Fall fall(accelerometer, InitFallConstants::DEBOUNCE_LENGTH_MS);
+
+    inline Api api(APICredentials::API_URL, APICredentials::CERTIFICATE, APICredentials::API_KEY, APICredentials::DEVICE_ID);
 }

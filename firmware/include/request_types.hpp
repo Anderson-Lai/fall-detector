@@ -1,11 +1,11 @@
 #pragma once
 
 struct Alert {
-    char* DeviceID;
-    char* AlertType;
+    const char *DeviceID;
+    const char *AlertType;
 };
 
 struct Provision {
-    char* DeviceID;
-    char* APIKey;
+    const char *DeviceID;
+    const char *APIKey;
 };

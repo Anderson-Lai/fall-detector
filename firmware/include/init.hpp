@@ -12,4 +12,5 @@ namespace Init {
     inline constexpr uint32_t WIFI_CONNECT_RETRY_TIMEOUT_MS = 750;
     inline constexpr uint32_t WIFI_CONNECT_MAX_RETRIES = 100;
     bool ConnectToWifi();
+
 }

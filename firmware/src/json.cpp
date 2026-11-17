@@ -2,7 +2,7 @@
 
 #include "json.hpp"
 
-String SerializeAlert(const Alert &alert) {
+String JSON::SerializeAlert(const Alert &alert) {
     JsonDocument doc;
 
     doc["device_id"] = alert.DeviceID;
