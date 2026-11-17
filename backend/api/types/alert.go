@@ -3,7 +3,6 @@ package types
 type Alert struct {
 	DeviceID string `json:"device_id"`
 	AlertType alertType `json:"alert_type"`
-	Coordinates Coordinates `json:"coordinates"`
 }
 
 type alertType string
@@ -11,6 +10,3 @@ type alertType string
 const (
 	AlertSOS alertType = "SOS"
 )
-type Coordinates struct {
-	Latitude, Longitude float64
-}

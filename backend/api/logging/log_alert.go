@@ -33,7 +33,6 @@ func LogAlert(alert types.Alert) error {
 	logData[timing.GetNow()] = types.Alert{
 		DeviceID:    alert.DeviceID,
 		AlertType:   alert.AlertType,
-		Coordinates: alert.Coordinates,
 	}
 
 	if err := writeAsJSONData(logName, logData); err != nil {

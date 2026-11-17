@@ -13,10 +13,6 @@ func TestPostAlert(t *testing.T) {
 	data := types.Alert{
 		DeviceID: "test-device",
 		AlertType: types.AlertSOS,
-		Coordinates: types.Coordinates{
-			Latitude:  37.7749,
-			Longitude: -122.4194,
-		},
 	}
 
 	body, err := json.Marshal(data)

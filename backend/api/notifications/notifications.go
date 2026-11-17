@@ -2,7 +2,6 @@ package notifications
 
 import (
 	"errors"
-	"fmt"
 	"log"
 	"medical-device/backend/api/types"
 	"net/smtp"
@@ -32,21 +31,14 @@ func SendEmailNotification(alert types.Alert) error {
 	}
 
 	subject := "Medical Device Alert: " + alertType
-	validCoordinates := alert.Coordinates.Latitude <= 90.0 && alert.Coordinates.Latitude >= -90.0 && 
-		alert.Coordinates.Longitude <= 180.0 && alert.Coordinates.Longitude >= -180.0
 
 	for _, recipient := range details.Recipients {
 		message := "From: " + details.Username + "\r\n" +
 			"To: " + recipient + "\r\n" +
 			"Subject: " + subject + "\r\n" +
 			"\r\n" +
-			"A new alert of type: " + alertType + " has been sent from device ID: " +
-			alert.DeviceID
-
-		if validCoordinates {
-			message += fmt.Sprintf(" at coordinates: (%.6f, %.6f)", 
-				alert.Coordinates.Latitude, alert.Coordinates.Longitude)
-		}
+			"A new alert of type \"" + alertType + "\" has been sent from device ID \"" +
+			alert.DeviceID + "\"."
 
 		message += ".\r\n"
 
