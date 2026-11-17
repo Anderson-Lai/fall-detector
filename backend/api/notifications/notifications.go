@@ -40,7 +40,7 @@ func SendEmailNotification(alert types.Alert) error {
 			"A new alert of type \"" + alertType + "\" has been sent from device ID \"" +
 			alert.DeviceID + "\"."
 
-		message += ".\r\n"
+		message += "\r\n"
 
 		err := smtp.SendMail("smtp.gmail.com:587", auth, details.Username, []string{recipient}, []byte(message))
 		if err != nil {
