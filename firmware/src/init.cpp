@@ -19,6 +19,10 @@ void Init::PulldownAllPins() {
 
 bool Init::ConnectToWifi() {
     WiFi.mode(WIFI_STA);
+    WiFi.setSleep(false);
+
+    WiFi.disconnect(true, true);
+    delay(1000);
 
     Serial.println("Scanning for WiFi networks...");
     int networks = WiFi.scanNetworks();
