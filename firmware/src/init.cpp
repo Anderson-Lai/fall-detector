@@ -52,7 +52,7 @@ bool Init::ConnectToWifi() {
     }
 
     Serial.println();
-    Serial.println("Connected to Wi-Fi");
+    Serial.println("Connected to Wi-Fi!");
 
     Serial.print("SSID: ");
     Serial.println(WiFi.SSID());
