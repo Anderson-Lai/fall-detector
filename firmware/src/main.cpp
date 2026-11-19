@@ -28,7 +28,7 @@ void loop() {
   if (Globals::fall.IsFallDetected()) {
     Serial.println("Fall detected!");
 
-     digitalWrite(Globals::BUZZER_PIN, HIGH);
+    digitalWrite(Globals::BUZZER_PIN, HIGH);
 
     Serial.println("Sending fall alert to API...");
 
