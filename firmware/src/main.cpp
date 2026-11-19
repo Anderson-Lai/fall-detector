@@ -17,6 +17,8 @@ void setup() {
     Serial.println("Failed to synchronize time. Continuing without time synchronization.");
   }
 
+  pinMode(Globals::BUZZER_PIN, OUTPUT);
+
   Serial.println();
   Serial.println("Setup complete.");
   Serial.println();
@@ -26,13 +28,18 @@ void loop() {
   Globals::fall.SampleAcceleration();
   if (Globals::fall.IsFallDetected()) {
     Serial.println("Fall detected!");
+
+     digitalWrite(Globals::BUZZER_PIN, HIGH);
+
     Serial.println("Sending fall alert to API...");
-    
+
     if (Globals::api.SendAlert("SOS")) {
       Serial.println("Fall alert sent successfully!");
     } else {
       Serial.println("Failed to send fall alert.");
     }
+
+    digitalWrite(Globals::BUZZER_PIN, LOW);
 
     Serial.println();
     Serial.println("Debouncing...");

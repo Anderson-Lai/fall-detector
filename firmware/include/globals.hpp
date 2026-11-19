@@ -25,4 +25,6 @@ namespace Globals {
 
     inline Api api(APICredentials::API_URL, APICredentials::CERTIFICATE, 
         APICredentials::API_KEY, APICredentials::DEVICE_ID);
+    
+     inline constexpr uint8_t BUZZER_PIN = 2;
 }
