@@ -10,7 +10,7 @@ namespace Globals {
         inline constexpr uint8_t PIN_X = A0;
         inline constexpr uint8_t PIN_Y = A1;
         inline constexpr uint8_t PIN_Z = A3;
-        inline constexpr uint8_t PIN_GSELECT = 8;
+        inline constexpr uint8_t PIN_GSELECT = 20;
         inline constexpr AccelerometerMode MODE = AccelerometerMode::HIGH_ACCEL;
         inline constexpr bool IS_DEBUG = false;
     }
@@ -26,5 +26,5 @@ namespace Globals {
     inline Api api(APICredentials::API_URL, APICredentials::CERTIFICATE, 
         APICredentials::API_KEY, APICredentials::DEVICE_ID);
     
-     inline constexpr uint8_t BUZZER_PIN = 2;
+     inline constexpr uint8_t BUZZER_PIN = 21;
 }
