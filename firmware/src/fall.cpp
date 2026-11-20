@@ -26,7 +26,7 @@ void Fall::ResetAccelerationHistory() {
     m_accelerationHistory.fill(0.0);
 }
 
-void Fall::Debounce() {
+void Fall::Debounce() const {
     delay(m_debounceLength);
 }
 

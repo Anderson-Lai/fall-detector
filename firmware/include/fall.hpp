@@ -18,7 +18,7 @@ public:
     bool IsFallDetected() const;
 
     void ResetAccelerationHistory();
-    void Debounce();
+    void Debounce() const;
 private:
     void InsertAcceleration(const double acceleration);
 };
