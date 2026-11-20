@@ -4,7 +4,7 @@
 #include "init.hpp"
 
 void setup() {
-    Init::Setup();
+  Init::Setup();
 }
 
 void loop() {
