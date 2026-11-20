@@ -39,11 +39,10 @@ namespace Globals {
         inline constexpr uint8_t PIN_Z = A3;
         inline constexpr uint8_t PIN_GSELECT = 20;
         inline constexpr AccelerometerMode MODE = AccelerometerMode::HIGH_ACCEL;
-        inline constexpr bool IS_DEBUG = false;
     }
     inline const Accelerometer accelerometer(InitAccelerometerConstants::PIN_X, InitAccelerometerConstants::PIN_Y, 
         InitAccelerometerConstants::PIN_Z, InitAccelerometerConstants::PIN_GSELECT, 
-        InitAccelerometerConstants::MODE, InitAccelerometerConstants::IS_DEBUG);
+        InitAccelerometerConstants::MODE);
     
     namespace InitFallConstants {
         inline constexpr uint32_t DEBOUNCE_LENGTH_MS = 1'000;

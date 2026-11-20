@@ -14,27 +14,25 @@ void AlertCleanUp() {
   Globals::alertSendTimeMS = UINT64_MAX;
 }
 
-void AlertCleanUp() {
-  digitalWrite(Globals::BUZZER_PIN, LOW);
-  Globals::state = Globals::State::IDLE;
-  Globals::alertTriggerTimeMS = UINT64_MAX;
-  Globals::alertSendTimeMS = UINT64_MAX;
-}
-
 void loop() {
   // handle double press of button
   bool manualAlertTriggered = false;
   if (Globals::button.IsDoublePressed()) {
     switch (Globals::state) {
       case Globals::State::IDLE:
-        Serial.println("Button double-pressed. Switching to MESSAGE_PENDING state.");
-        Globals::state = Globals::State::QUEUED_MESSAGE;
+        Serial.println();
+        Serial.println("Button double-pressed. Switching to QUEUED_MESSAGE state.");
+        Serial.println();
 
+        Globals::state = Globals::State::QUEUED_MESSAGE;
         manualAlertTriggered = true;
         break;
       case Globals::State::QUEUED_MESSAGE:        
       case Globals::State::MESSAGE_PENDING:
+        Serial.println();
         Serial.println("Button double-pressed. Switching to IDLE state.");
+        Serial.println();
+
         AlertCleanUp();
         break;
     }
@@ -71,6 +69,7 @@ void loop() {
     }
 
     AlertCleanUp();
+
     Serial.println();
     Serial.println("Global state reset to IDLE. Waiting for next event...");
     Serial.println();
