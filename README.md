@@ -14,12 +14,12 @@ For proper functionality, ensure there is a copy of `.env` in `./backend` and a 
 - [x] Sending POST request on fall detection
   - [x] Connect to WiFi (phone hotspot)
   - [x] Trust TLS certificate
-- [ ] Implement button functionality
-  - [ ] SOS button when fall is **not** detected
-  - [ ] Canceling SOS when fall **is** detected
-    -  [ ] Either cancel on server side (delaying notifications) or client side (RTOS + semaphores)
-- [ ] Implement buzzer functionality
-  - [ ] Activate buzzer on fall detection
+- [x] Implement button functionality
+  - [x] SOS button when fall is **not** detected
+  - [x] Canceling SOS when fall **is** detected
+    -  [x] Either cancel on server side (delaying notifications) or client side (RTOS + semaphores)
+- [x] Implement buzzer functionality
+  - [x] Activate buzzer when waiting to send an alert
 
 ## Backend Features
 
