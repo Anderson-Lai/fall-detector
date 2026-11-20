@@ -6,6 +6,10 @@ Documentation is available at [./docs](./docs). Each component of the project (t
 
 For proper functionality, ensure there is a copy of `.env` in `./backend` and a copy of `credentials.hpp` in `./firmware/include` with appropriate entries.
 
+## Bugs
+
+- [ ] After detecting a fall automatically, immediately double clicking the button does not cancel the alert. Rather, the button can be double clicked to cancel the alert only after a short time.
+
 ## Firmware Features
 
 - [x] Implement fall detection
@@ -36,5 +40,5 @@ For proper functionality, ensure there is a copy of `.env` in `./backend` and a 
   - [ ] Proper authentication with username + password
 
 ## Frontend Features
-- [ ] App to easily upload wifi credentials onto ESP32
-- [ ] Website for CCCARE staff to get all longs
+- [ ] Website to easily upload wifi credentials, API key, and device ID onto ESP32 via bluetooth
+- [ ] Website for CCCARE staff to get all logs and device IDs
