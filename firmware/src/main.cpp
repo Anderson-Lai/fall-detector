@@ -14,6 +14,13 @@ void AlertCleanUp() {
   Globals::alertSendTimeMS = UINT64_MAX;
 }
 
+void AlertCleanUp() {
+  digitalWrite(Globals::BUZZER_PIN, LOW);
+  Globals::state = Globals::State::IDLE;
+  Globals::alertTriggerTimeMS = UINT64_MAX;
+  Globals::alertSendTimeMS = UINT64_MAX;
+}
+
 void loop() {
   // handle double press of button
   bool manualAlertTriggered = false;
