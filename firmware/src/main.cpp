@@ -7,7 +7,7 @@ void setup() {
   Init::Setup();
 }
 
-void AlertCleanUp() {
+static void AlertCleanUp() {
   digitalWrite(Globals::BUZZER_PIN, LOW);
   Globals::state = Globals::State::IDLE;
   Globals::alertTriggerTimeMS = UINT64_MAX;
