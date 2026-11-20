@@ -9,6 +9,9 @@
 void Init::Setup() {
     InitSerial(Init::SERIAL_BAUD_RATE);
 
+    Serial.println("Initializing button...");
+    pinMode(Globals::InitButtonConstants::PIN, INPUT_PULLDOWN);
+
     Serial.println("Initializing buzzer pin...");
 
     pinMode(Globals::BUZZER_PIN, OUTPUT);

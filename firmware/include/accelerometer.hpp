@@ -12,24 +12,20 @@ enum class AccelerometerMode {
 
 class Accelerometer {
 private:
-    uint8_t m_xPin;
-    uint8_t m_yPin;
-    uint8_t m_zPin;
-    uint8_t m_gselectPin;
+    const uint8_t m_xPin;
+    const uint8_t m_yPin;
+    const uint8_t m_zPin;
+    const uint8_t m_gselectPin;
 
     AccelerometerMode m_mode;
-    bool m_isDebug;
 private:
     static constexpr auto ADC_ATTENUATION = ADC_11db;
 public:
     Accelerometer(const uint8_t xPin, const uint8_t yPin, const uint8_t zPin, const uint8_t gselectPin, 
-        const AccelerometerMode mode, const bool isDebug = false);
+        const AccelerometerMode mode);
 
     AccelerometerMode GetMode() const;
     void SetMode(AccelerometerMode mode);
-
-    bool IsDebug() const;
-    void SetDebug(bool isDebug);
 public:
     // in order of 'x, y, z'
     std::array<double, 3> GetAccelerations() const;

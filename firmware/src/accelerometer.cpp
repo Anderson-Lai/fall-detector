@@ -4,9 +4,8 @@
 #include "accelerometer.hpp"
 
 Accelerometer::Accelerometer(const uint8_t xPin, const uint8_t yPin, const uint8_t zPin, 
-        const uint8_t gselectPin, const AccelerometerMode mode, const bool isDebug)
-    : m_xPin(xPin), m_yPin(yPin), m_zPin(zPin), m_gselectPin(gselectPin), 
-        m_mode(mode), m_isDebug(isDebug) {
+        const uint8_t gselectPin, const AccelerometerMode mode)
+    : m_xPin(xPin), m_yPin(yPin), m_zPin(zPin), m_gselectPin(gselectPin), m_mode(mode) {
 
     pinMode(xPin, INPUT);
     pinMode(yPin, INPUT);
@@ -31,14 +30,6 @@ void Accelerometer::SetMode(AccelerometerMode mode) {
         : digitalWrite(m_gselectPin, HIGH);
 }
 
-bool Accelerometer::IsDebug() const {
-    return m_isDebug;
-}
-
-void Accelerometer::SetDebug(bool isDebug) {
-    m_isDebug = isDebug;
-}
-
 std::array<double, 3> Accelerometer::GetAccelerations() const {
     auto readings = ReadVoltages();
     readings = VoltagesToGs(readings);
@@ -56,16 +47,16 @@ double Accelerometer::GetAcclerationMagnitude() const {
 }
 
 std::array<double, 3> Accelerometer::ReadVoltages() const {
-    if (m_isDebug){
-        uint32_t voltageX = analogReadMilliVolts(m_xPin);
-        uint32_t voltageY = analogReadMilliVolts(m_yPin);
-        uint32_t voltageZ = analogReadMilliVolts(m_zPin);
+#ifdef DEBUG_BUILD
+    uint32_t voltageX = analogReadMilliVolts(m_xPin);
+    uint32_t voltageY = analogReadMilliVolts(m_yPin);
+    uint32_t voltageZ = analogReadMilliVolts(m_zPin);
 
-        Serial.printf("X: %lu mV | Y: %lu mV | Z: %lu mV\n",
-            (unsigned long)voltageX,
-            (unsigned long)voltageY,
-            (unsigned long)voltageZ);
-    }
+    Serial.printf("X: %lu mV | Y: %lu mV | Z: %lu mV\n",
+        (unsigned long)voltageX,
+        (unsigned long)voltageY,
+        (unsigned long)voltageZ);
+#endif DEBUG_BUILD
 
     return std::array<double, 3>{
         static_cast<double>(analogReadMilliVolts(m_xPin)),

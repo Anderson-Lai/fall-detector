@@ -6,9 +6,9 @@
 
 class Fall {
 private:
-    Accelerometer m_accelerometer;
+    const Accelerometer m_accelerometer;
     std::array<double, 5> m_accelerationHistory;
-    uint32_t m_debounceLength = 0;
+    const uint32_t m_debounceLength;
 public:
     Fall(const Accelerometer& accelerometer, const uint32_t debounceLengthMS);
 public:

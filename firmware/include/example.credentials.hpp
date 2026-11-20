@@ -10,7 +10,7 @@ namespace APICredentials {
     inline constexpr char API_URL[] = "https://xxx.yyy.zzz";
     inline constexpr char CERTIFICATE[] = R"EOF(
 -----BEGIN CERTIFICATE-----
-    xxx
+xxx
 -----END CERTIFICATE-----
     )EOF";
 
