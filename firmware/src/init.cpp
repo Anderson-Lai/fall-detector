@@ -3,11 +3,58 @@
 #include <time.h>
 
 #include "init.hpp"
+#include "globals.hpp"
 #include "credentials.hpp"
+
+void Init::Setup() {
+    InitSerial(Init::SERIAL_BAUD_RATE);
+
+    Serial.println("Initializing buzzer pin...");
+
+    pinMode(Globals::BUZZER_PIN, OUTPUT);
+    digitalWrite(Globals::BUZZER_PIN, LOW);
+
+    // delay to prevent chimes from blurring together
+    delay(200);
+
+    if (!ConnectToWifi())
+    {
+        Serial.println("Failed to connect to Wi-Fi. Continuing without Wi-Fi.");
+    } else {
+        Serial.println("Connected to Wi-Fi!");
+
+        // alert user if serial monitor is unavailable
+        ChimeBuzzer(75);
+        delay(25);
+        ChimeBuzzer(75);
+        delay(100);
+    }
+
+    // needed for TLS
+    Serial.println();
+    if (!SynchronizeTime())
+    {
+        Serial.println("Failed to synchronize time. Continuing without time synchronization.");
+    } else {
+        ChimeBuzzer(75);
+        delay(25);
+        ChimeBuzzer(75);
+    }
+
+    Serial.println();
+    Serial.println("Setup complete.");
+    Serial.println();
+}
 
 void Init::InitSerial(const unsigned long baudRate) {
     Serial.begin(baudRate);
     Serial.println("Starting...");
+}
+
+void Init::ChimeBuzzer(const uint32_t durationMS) {
+    digitalWrite(Globals::BUZZER_PIN, HIGH);
+    delay(durationMS);
+    digitalWrite(Globals::BUZZER_PIN, LOW);
 }
 
 bool Init::ConnectToWifi() {

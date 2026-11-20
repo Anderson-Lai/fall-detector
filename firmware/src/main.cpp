@@ -4,23 +4,7 @@
 #include "init.hpp"
 
 void setup() {
-  Init::InitSerial(Init::SERIAL_BAUD_RATE);
-
-  if (!Init::ConnectToWifi()) {
-    Serial.println("Failed to connect to Wi-Fi. Continuing without Wi-Fi.");
-  }
-
-  // needed for TLS
-  Serial.println();
-  if (!Init::SynchronizeTime()) {
-    Serial.println("Failed to synchronize time. Continuing without time synchronization.");
-  }
-
-  pinMode(Globals::BUZZER_PIN, OUTPUT);
-
-  Serial.println();
-  Serial.println("Setup complete.");
-  Serial.println();
+    Init::Setup();
 }
 
 void loop() {
