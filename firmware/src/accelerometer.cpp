@@ -56,7 +56,7 @@ std::array<double, 3> Accelerometer::ReadVoltages() const {
         (unsigned long)voltageX,
         (unsigned long)voltageY,
         (unsigned long)voltageZ);
-#endif DEBUG_BUILD
+#endif
 
     return std::array<double, 3>{
         static_cast<double>(analogReadMilliVolts(m_xPin)),

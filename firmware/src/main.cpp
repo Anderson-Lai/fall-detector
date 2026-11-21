@@ -76,6 +76,19 @@ void loop() {
   }
 
   // detect for falls
+#ifdef DEBUG_BUILD_ACCELEROMETER
+  Serial.println("Accelerations: ");
+  const auto accelerations = Globals::accelerometer.GetAccelerations();
+  Serial.print("X: ");
+  Serial.print(accelerations[0]);
+  Serial.print(" | Y: ");
+  Serial.print(accelerations[1]);
+  Serial.print(" | Z: ");
+  Serial.println(accelerations[2]);
+
+  Serial.print("Acceleration magnitude: ");
+  Serial.println(Globals::accelerometer.GetAcclerationMagnitude());
+#endif
   Globals::fall.SampleAcceleration();
 
   // second check will perform debouncing for us

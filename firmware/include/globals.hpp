@@ -7,7 +7,7 @@
 #include "api.hpp"
 
 namespace Globals {
-    inline constexpr uint8_t BUZZER_PIN = 21;
+    inline constexpr uint8_t BUZZER_PIN = 5;
 
     enum class State {
         IDLE,
@@ -17,7 +17,7 @@ namespace Globals {
     inline State state = State::IDLE;
 
     namespace InitButtonConstants {
-        inline constexpr uint8_t PIN = 6;
+        inline constexpr uint8_t PIN = 4;
         inline constexpr uint32_t DEBOUNCE_LENGTH_MS = 200;
         inline constexpr uint32_t DOUBLE_PRESS_LENGTH_MS = 500;
     }
