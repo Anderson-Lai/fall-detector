@@ -2,13 +2,9 @@
 
 This monorepo contains all the code for a fall detector. The backend (`./backend`) is written in Go, and the firmware for the microcontroller (`./firmware`) is written in C++. The microcontroller is an ESP32-C3 SuperMini.
 
-Documentation is available at [./docs](./docs). Each component of the project (the backend and the firmware) *may* each have their own `README.md` for less pertinent notes and documentation. 
+Documentation is available at [./docs](./docs). The firmware component of the projection ([./firmware](./firmware/)) has its own `README.md` for information pertinent to the specific board used for the project and other firmware concerns.
 
 For proper functionality, ensure there is a copy of `.env` in `./backend` and a copy of `credentials.hpp` in `./firmware/include` with appropriate entries.
-
-## Bugs
-
-- [ ] After detecting a fall automatically, immediately double clicking the button does not cancel the alert. Rather, the button can be double clicked to cancel the alert only after a short time.
 
 ## Firmware Features
 
